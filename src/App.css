@@ -1,0 +1,71 @@
+.App {
+  text-align: center;
+  background-color: #f5f5f5;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: auto;
+}
+
+.inputCont {
+  padding: 20px;
+  border-radius: 5px;
+  border: 0;
+  width: 500px;
+  outline: none;
+}
+
+.App button {
+  padding: 20px;
+  border: 0;
+  border-radius: 5px;
+  margin-left: 5px;
+  background-color: chocolate;
+  cursor: pointer;
+  transition: opacity 0.5s;
+  color: aliceblue
+}
+
+.App button:hover {
+  opacity: 0.8;
+}
+
+.App h1 {
+  margin: 30px 0;
+}
+
+
+.App_content {
+    width: 55%;
+    margin: 0 auto;
+    overflow-x: auto;
+    height: 300px;
+    padding: 20px 0;
+}
+
+
+.btn button {
+  background-color: #966909;
+  margin: 0 9px;
+  padding: 12px 29px;
+  animation: enable 0.8s linear;
+}
+
+.btn button:hover {
+  background-color: #ff4d4d;
+}
+
+
+@keyframes enable {
+    0% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

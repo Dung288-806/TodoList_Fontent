@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import TodoItem from "./components/Items/Item";
 import axios from "axios";
@@ -14,11 +15,14 @@ class App extends Component {
     };
   }
 
-  URL = "http://localhost:8080/todo";
+  // URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
+  URL = "https://basicposdemo.herokuapp.com";
 
   componentDidMount() {
+    console.log("dsdsa");
+    console.log(process.env.REACT_APP_API_URL);
     axios
-      .get(this.URL + "/all")
+      .get(this.URL + "all")
       .then((res) => {
         this.setState({ listTodo: res.data });
       })
@@ -30,7 +34,7 @@ class App extends Component {
   handleAdd = () => {
     const data = { ...this.state.itemTodo };
     axios
-      .post(this.URL + "/add", data)
+      .post(this.URL + "add", data)
       .then((res) => {
         const newListTodo = [res.data, ...this.state.listTodo];
         this.setState({ listTodo: newListTodo, itemTodo: { content: "" } });
@@ -41,7 +45,7 @@ class App extends Component {
   handleCheckComplete = (id) => {
     console.log(id);
     axios
-      .put(this.URL + `/completed/${id}`)
+      .put(this.URL + `completed/${id}`)
       .then(() => {
         const listTodo = [...this.state.listTodo];
         const index = listTodo.findIndex((i) => {
@@ -57,7 +61,7 @@ class App extends Component {
 
   handleDelTodo = (id) => {
     axios
-      .delete(this.URL + `/del/${id}`)
+      .delete(this.URL + `del/${id}`)
       .then(() => {
         const listTodo = [...this.state.listTodo];
         const newListToDo = listTodo.filter((i) => i._id !== id);
@@ -70,7 +74,7 @@ class App extends Component {
 
   handleGetAll = () => {
     axios
-      .get(this.URL + "/all")
+      .get(this.URL + "all")
       .then((res) => {
         this.setState({ listTodo: res.data });
       })
@@ -80,7 +84,7 @@ class App extends Component {
   };
   handleGetCom = () => {
     axios
-      .get(this.URL + "/all?completed=true")
+      .get(this.URL + "all?completed=true")
       .then((res) => {
         this.setState({ listTodo: res.data });
       })
@@ -90,7 +94,7 @@ class App extends Component {
   };
   handleGetNotCom = () => {
     axios
-      .get(this.URL + "/all?completed=false")
+      .get(this.URL + "all?completed=false")
       .then((res) => {
         this.setState({ listTodo: res.data });
       })
@@ -124,9 +128,12 @@ class App extends Component {
           ></input>
           <button onClick={this.handleAdd}>Add</button>
         </div>
-        <div style={{
-          display: this.state.listTodo.length > 0 ? "block" : "none"
-        }} className="btn">
+        <div
+          style={{
+            display: this.state.listTodo.length > 0 ? "block" : "none",
+          }}
+          className="btn"
+        >
           <button onClick={() => this.handleGetAll()}>All</button>
           <button onClick={() => this.handleGetCom()}>Completed</button>
           <button onClick={() => this.handleGetNotCom()}>Not Completed</button>

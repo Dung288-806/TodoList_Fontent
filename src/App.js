@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   // URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
-  URL = "https://basicposdemo.herokuapp.com";
+  URL = "https://app-todolist-288.herokuapp.com/";
 
   componentDidMount() {
     console.log("dsdsa");
